@@ -27,6 +27,11 @@ PREPROCESSORS=[
             'chatterbot.preprocessors.convert_to_ascii'
     ]
 
+from chatterbot import filters
+FILTERS = [filters.get_recent_repeated_responses]
 
+from chatterbot.comparisons import levenshtein_distance
+
+STATEMENT_COMPARISON_FUNCTION=levenshtein_distance
 
 RESPONSE_SELECTION_METHOD = get_most_frequent_response

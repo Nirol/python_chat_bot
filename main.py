@@ -4,6 +4,8 @@ from pip._vendor.distlib.compat import raw_input
 import constants
 import init_train
 from chatterbot.response_selection import get_most_frequent_response
+import logging
+
 
 
 
@@ -15,7 +17,9 @@ def init_chat_bot():
         logic_adapters=constants.LOGIC_ADAPTERS,
         database_uri=constants.DB_URL,
         preprocessors= constants.PREPROCESSORS,
-        response_selection_method= constants.RESPONSE_SELECTION_METHOD
+        response_selection_method= constants.RESPONSE_SELECTION_METHOD,
+        filters = constants.FILTERS,
+        statement_comparison_function=constants.STATEMENT_COMPARISON_FUNCTION
     )
     return bot
 
@@ -31,6 +35,7 @@ def run_bot(bot):
 
 
 if __name__ == '__main__':
+    logging.basicConfig(level=logging.INFO)
     chatbot = init_chat_bot()
     init_train.train_bot(chatbot)
     run_bot(chatbot)
